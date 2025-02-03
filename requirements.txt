@@ -1,0 +1,8 @@
+beautifulsoup4==4.11.1
+gradio==5.14.0
+langchain_chroma==0.2.1
+langchain_community==0.3.16
+langchain_openai==0.3.3
+langchain_text_splitters==0.3.5
+python-dotenv==1.0.1
+Requests==2.32.3
