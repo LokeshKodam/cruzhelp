@@ -11,7 +11,7 @@ export default function AppPage() {
   return (
     <div className="space-y-8">
       <div className="text-center py-8">
-        <h2 className="text-4xl font-bold mb-4 text-primary">CruzAssist Demo</h2>
+        <h2 className="text-4xl font-bold mb-4 text-primary">CruzAgent Demo</h2>
         <p className="text-lg text-foreground">
           Input the link to your website to get
           <br />a demo custom AI chatbot for your website

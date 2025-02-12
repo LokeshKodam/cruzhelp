@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button"
 export default function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-white text-center px-4">
-      <h1 className="text-5xl font-bold mb-6 text-primary">Welcome to CruzAssist</h1>
+      <h1 className="text-5xl font-bold mb-6 text-primary">Welcome to CruzAgent</h1>
       <p className="text-xl mb-8 max-w-2xl text-foreground">
-        Drive user engagement through your website with our AI-powered customer service assistant.
+        Unlock the power of your website with AI-driven insights. CruzAgent seamlessly integrates with your web content,
+        providing intelligent answers and enhancing user engagement.
       </p>
 
       <div className="space-y-8 mb-12">
@@ -21,7 +22,7 @@ export default function LandingPage() {
           />
           <FeatureCard
             title="Seamless Integration"
-            description="Easily incorporate CruzAssist into your existing website for an enhanced user experience."
+            description="Easily incorporate CruzAgent into your existing website for an enhanced user experience."
           />
         </div>
       </div>
@@ -31,7 +32,7 @@ export default function LandingPage() {
           size="lg"
           className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          Try CruzAssist Now
+          Try CruzAgent Now
         </Button>
       </Link>
 

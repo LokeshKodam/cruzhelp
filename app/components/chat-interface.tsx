@@ -40,7 +40,7 @@ export default function ChatInterface() {
       await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulating API call
       const aiMessage: Message = {
         role: "ai",
-        content: `This is a sample response to: "${input}". It can be a very long response that doesn't get cut off and instead wraps to new lines within the same text box. This ensures that all the content is visible and easily readable, even for very long single-word inputs.`,
+        content: `This is a sample response from CruzAgent to: "${input}". It can be a very long response that doesn't get cut off and instead wraps to new lines within the same text box. This ensures that all the content is visible and easily readable, even for very long single-word inputs.`,
       }
       setMessages((prev) => [...prev, aiMessage])
     } catch (error) {
