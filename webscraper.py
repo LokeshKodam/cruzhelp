@@ -10,7 +10,7 @@ except FileExistsError:
     print(f"Directory '{directory}' already exists.")
 
 # get the website
-web = "https://www.pizzamyheart.com"
+web = "https://boredalot.com/weird-websites/"
 page = requests.get(web)
 
 # get all the text from the website

@@ -1,6 +1,6 @@
+from openai import OpenAI
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_chroma import Chroma
-import gradio as gr
 
 # load the env file
 from dotenv import load_dotenv
@@ -26,8 +26,7 @@ vector_store = Chroma(
 num_results = 5
 retriever = vector_store.as_retriever(search_kwargs={'k': num_results})
 
-def stream(message, history):
-
+def get_prompt(message):
     # get the correct chunks
     docs = retriever.invoke(message)
 
@@ -37,38 +36,48 @@ def stream(message, history):
     for doc in docs:
         previous_information += doc.page_content+"\n\n"
 
-
     # this is the prompt for the llm, making it remember the previous conversations
     # stole the prompt from some website works pretty well 
     if message is not None:
 
         partial_message = ""
 
-        prompt = f"""
+        system_prompt = f"""
         You are an assistent which answers questions based on knowledge which is provided to you.
         While answering, you don't use your internal knowledge, 
         but solely the information in the "The knowledge" section.
-        You don't mention anything to the user about the povided knowledge.
+        You don't mention anything to the user about the provided knowledge.
 
         The question: {message}
-
-        Conversation history: {history}
 
         The knowledge: {previous_information}
 
         """
 
-        # stream the response to the gradio App
-        for response in llm.stream(prompt):
-            partial_message += response.content
-            yield partial_message
+        return system_prompt
 
-# initialize gradio
-chatbot = gr.ChatInterface(stream, textbox=gr.Textbox(placeholder="Send to the LLM...",
-    container=False,
-    autoscroll=True,
-    scale=7),
-)
 
-# use gradio
-chatbot.launch()
+#print(results['documents'])
+#print(results['metadatas'])
+
+client = OpenAI()
+
+#print(system_prompt)
+
+def get_response(message):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages = [
+            {"role":"user","content":get_prompt(message)}    
+        ]
+    )
+
+    return response.choices[0].message.content
+
+run = True
+while run:
+    msg = input("\nAsk a question...\nType 'quit' to quit\n\n")
+    if msg == "quit":
+        run = False
+        break
+    print("\u001b[32m" + str(get_response(msg)) + "\033[0m")

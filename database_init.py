@@ -16,7 +16,7 @@ embeddings_model = OpenAIEmbeddings(model="text-embedding-3-large")
 
 # init chroma store
 vector_store = Chroma(
-    collection_name="example_collection",
+    collection_name="website_data",
     embedding_function=embeddings_model,
     persist_directory=CHROMA_PATH,
 )
